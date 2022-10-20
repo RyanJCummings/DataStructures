@@ -7,25 +7,87 @@ public class LinkedList{
 
     public LinkedList() {}
 
-    public Node insert(int value) {
-        Node node = new Node(value);
-        if (head == null) {
-            head = node;
-            return node;
-        }
-        else {
-
-        }
-
-        return node;
+    /**
+     * creates a node
+     * @param value sortable value of the node to be inserted
+     * @return new node
+     */
+    public Node createNode(int value) {
+        return new Node(value);
     }
 
-    public Node findOrder(Node insertNode, Node current) {
-        // Base Case
-        if (insertNode.getValue() == current.getValue()) {
+    /**
+     * helper method to kick off recursive insert with correct params
+     * @param insertNode
+     */
+    public void insert(Node insertNode) {
+        insertHelper(insertNode, head);
+    }
+    /**
+     * recursively finds correct sorted location and inserts node
+     * @param insertNode
+     * @param current
+     * @return recursive call to search list
+     */
+    private Node insertHelper(Node insertNode, Node current) {
+        // Base Cases
+        // If list is empty
+        if (head == null) {
+            head = insertNode;
+            return insertNode;
+        }
+        // If new node is lowest value
+        else if (insertNode.getValue() < head.getValue()) {
+            insertNode.setNext(head);
+            head = insertNode;
+            return insertNode;
+        }
+        // if new node has same value
+        else if (insertNode.getValue() == current.getValue()) {
+            current.setNext(insertNode);
+            return insertNode;
+        }
+        // if new node is greatest value
+        else if (insertNode.getValue() > current.getValue() && current.getNext() == null) {
+            current.setNext(insertNode);
+            insertNode.setNext(null);
+            return insertNode;
+        }
+        // if new node is in correct location for sorted value
+        else if (insertNode.getValue() > current.getValue() && insertNode.getValue() < current.getNext().getValue()) {
+            insertNode.setNext(current.getNext());
+            current.setNext(insertNode);
+            return insertNode;
+        }
+        // recursively compare to next node in list
+        else {
+            return insertHelper(insertNode, current.getNext());
+        }
+    }
+
+    /**
+     * kicks off recursive print method
+     */
+    public void printList() {
+        printHelper(head);
+    }
+
+    /**
+     * recursively prints the linked list
+     * @param current
+     * @return recursive call to printlist
+     */
+    private Node printHelper(Node current) {
+        // base case
+        if (current.getNext() ==  null) {
+            System.out.println(current.getValue());
             return current;
         }
-        return current;
+        // recursively move to next node
+        else {
+            System.out.println(current.getValue());
+            return printHelper(current.getNext());
+        }
     }
 }
 
