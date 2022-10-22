@@ -20,6 +20,7 @@ public class LinkedList<T extends Comparable> {
     public void insert(Node<T> insertNode) {
         recursiveInsert(insertNode, head);
     }
+
     /**
      * recursively finds correct sorted location and inserts node
      * @param insertNode node to be inserted
@@ -41,6 +42,7 @@ public class LinkedList<T extends Comparable> {
         }
         // if new node has same value
         else if (insertNode.getValue().compareTo(current.getValue()) == 0) {
+            insertNode.setNext(current.getNext());
             current.setNext(insertNode);
             return insertNode;
         }
