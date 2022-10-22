@@ -1,15 +1,15 @@
-public class Node {
-    private Node next = null;
-    private int value;
+public class Node<T> {
+    private Node<T> next = null;
+    private final T value;
 
-    public Node(int value) {
+    public Node(T value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public T getValue() {
         return this.value;
     }
 
-    public Node getNext() {return this.next;}
-    public void setNext(Node reference) {this.next = reference;}
+    public Node<T> getNext() {return this.next;}
+    public void setNext(Node<T> reference) {this.next = reference;}
 }

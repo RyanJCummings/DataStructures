@@ -23,7 +23,7 @@ public class StackAndParse {
 
 
     /**
-     *
+     * pushes a value onto the stack
      * @param ch char to be added to stack
      */
     private void push(Character ch) {

@@ -4,9 +4,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main (String[] Args) throws IOException {
-        /***
-         * Stack Challenge
-         */
+
+        // Stack Challenge
         StackAndParse parser = new StackAndParse();
         File file1 = new File("src/input1.txt");
         File file2 = new File("src/input2.txt");
@@ -15,23 +14,16 @@ public class Main {
         System.out.println("File 2 is balanced: " + parser.parseFile(file2));    // should succeed
         System.out.println("File 3 is balanced: " + parser.parseFile(file3));    // should fail
 
-        /***
-         * Linked List Challenge
-         */
-        LinkedList linkedList = new LinkedList();
 
-        Node node = linkedList.createNode(1);
-        linkedList.insert(node);
+        // Linked List Challenge
+        LinkedList<IntegerData> linkedList = new LinkedList<>();
 
-        node = linkedList.createNode(5);
-        linkedList.insert(node);
+        linkedList.insert(linkedList.createNode(new IntegerData(1)));
+        linkedList.insert(linkedList.createNode(new IntegerData(5)));
+        linkedList.insert(linkedList.createNode(new IntegerData(0)));
+        linkedList.insert(linkedList.createNode(new IntegerData(4)));
 
-        node = linkedList.createNode(0);
-        linkedList.insert(node);
-
-        node = linkedList.createNode(4);
-        linkedList.insert(node);
-
+        System.out.println("\nLinked List: ");
         linkedList.printList();
 
 
